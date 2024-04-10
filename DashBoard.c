@@ -42,15 +42,15 @@ int main() {
         T /= 1000;
         printf ("The temperature is %6.3f C.\n", T);
         fclose (temperatureFile);
-        usleep(5000000);
 
         unsigned long total_mem, free_mem;
+        unsigned int used_mem;
 
         if (read_memory_info(&total_mem, &free_mem) == 0) {
-            printf("Total Memory: %lu kB\n", total_mem);
-            printf("Free Memory: %lu kB\n", free_mem);
-            // Calculate and print used memory
-            printf("Used Memory: %lu kB\n", total_mem - free_mem);
+            used_mem = (total_mem - free_mem) / 1000; 
+            printf("Used Memory: %lu MB\n", used_mem);
         }
+
+        usleep(5000000);
     }
 }
